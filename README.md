@@ -28,15 +28,15 @@ A feature-rich quiz application built with NestJS and TypeORM,(postgres) enablin
 
 ## Technologies Used
 
--NestJS: Framework for building scalable server-side applications.
+- NestJS: Framework for building scalable server-side applications.
 
--TypeORM: ORM for handling database operations.
+- TypeORM: ORM for handling database operations.
 
--PostgreSQL: Database for storing app data.
+- PostgreSQL: Database for storing app data.
 
--Passport(Auth): Secure authentication and authorization used strategies.
+- Passport(Auth): Secure authentication and authorization used strategies.
 
--Class Validator/Transformer: For data validation and transformation.
+- Class Validator/Transformer: For data validation and transformation.
 
 ## Project setup
 
