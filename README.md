@@ -22,9 +22,21 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Quiz Application
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+A feature-rich quiz application built with NestJS and TypeORM,(postgres) enabling teachers and students to participate in an efficient examination process. This application manages users, teachers, students, exams, and sessions while ensuring a smooth and user-friendly experience.
+
+## Technologies Used
+
+-NestJS: Framework for building scalable server-side applications.
+
+-TypeORM: ORM for handling database operations.
+
+-PostgreSQL: Database for storing app data.
+
+-Passport(Auth): Secure authentication and authorization used strategies.
+
+-Class Validator/Transformer: For data validation and transformation.
 
 ## Project setup
 
@@ -90,7 +102,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
+- Author - [Hammad Khan]
 - Website - [https://nestjs.com](https://nestjs.com/)
 - Twitter - [@nestframework](https://twitter.com/nestframework)
 
