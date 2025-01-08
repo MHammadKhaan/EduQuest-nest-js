@@ -7,18 +7,15 @@ import { User } from '../user/entities';
 export class MailService {
   constructor( private mailerService:MailerService ) {}
 
-  async sendMail({user,subject,context}:CreateMailDto){
+  async sendMail({user}:CreateMailDto){
    return  await this.mailerService.sendMail({
       to:user.email,
       subject:"welcome to our app !!",
       template:"confirmation",
       context:{
-        name:user.name,
-        subject,
-        context
+        name:user.name,       
       }
     })
-    console.log(user.email);
     
   }
   create(createMailDto: CreateMailDto) {

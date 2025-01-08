@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { MailService } from './mail.service';
 import { MailController } from './mail.controller';
 import { MailerModule } from '@nestjs-modules/mailer';
@@ -7,10 +7,12 @@ import { from } from 'form-data';
 import { join } from 'path';
 import { UserModule } from '../user/user.module';
 import * as path from 'path'
+
+@Global()
 @Module({
   imports: [MailerModule.forRoot({
     transport: {
-      host: 'in-v3.mailjet.com',
+      host: process.env.MAIL_JET_HOST,
       port: 588,
       auth: {
         user: process.env.MAIL_JET_USER,
@@ -19,7 +21,7 @@ import * as path from 'path'
       ,
     },
     defaults: {
-      from: 'hammadkhanmailbox@gmail.com'
+      from: process.env.DEFAULT_EMAIL
     },
     template: {
       dir: path.join(__dirname, '../../template'),

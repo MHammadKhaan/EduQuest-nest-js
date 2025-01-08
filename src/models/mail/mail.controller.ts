@@ -13,11 +13,12 @@ export class MailController {
     private readonly userService:UserService  ) {}
 
   @Post()
-  async sendMail(@Body() createMailDto:CreateMailDto) {
+  async sendMail(@Body('to') to:string){
     // const {password,...user}=await this.userService.findByEmail(createMailDto.to)
-     createMailDto.user=(({password,...user})=>user)(await this.userService.findByEmail(createMailDto.to))
+     const {password,...user}=await this.userService.findByEmail(to)
+     
     //used self-invoke method 
-    return await this.mailService.sendMail(createMailDto) 
+    return await this.mailService.sendMail({...CreateMailDto,user}) 
   }
 
   @Get()
