@@ -102,8 +102,8 @@ export class ExamAttemptsService {
 
     if (isQuizCompleted) {
       return {
-        ...rest,
         message: `quiz completed with score :${isQuizCompleted.score}`,
+        ...rest,
       };
     }
     return rest;

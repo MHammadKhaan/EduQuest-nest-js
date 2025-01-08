@@ -11,6 +11,7 @@ import { ExamsModule } from './models/exams/exams.module';
 import { QuestionsModule } from './models/questions/questions.module';
 import { ExamAttemptsModule } from './models/exam-attempts/exam-attempts.module';
 import { examAttempt } from './database/subscriber/examAttepmt.subscriber';
+import { MailModule } from './models/mail/mail.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { examAttempt } from './database/subscriber/examAttepmt.subscriber';
     ExamsModule,
     QuestionsModule,
     ExamAttemptsModule,
+    MailModule
   ],
   controllers: [AppController],
   providers: [AppService],
