@@ -1,3 +1,4 @@
+import { MailService } from './../mail/mail.service';
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Student } from './entities';
@@ -9,9 +10,12 @@ export class StudentService {
   constructor(
     @InjectRepository(Student)
     private readonly studentRepository: Repository<Student>,
+    private readonly mailService: MailService,
   ) {}
   async create(createStudentDto: CreateStudentDto) {
-    return await this.studentRepository.save(createStudentDto);
+    const student = await this.studentRepository.save(createStudentDto);
+    await this.mailService.sendMail({ user: student.user });
+    return student;
   }
 
   findAll() {

@@ -18,18 +18,21 @@ export class ExamAttemptsService {
     private readonly examAttemptRepo: Repository<ExamAttempt>,
     @InjectRepository(sessionQuestion)
     private readonly sessionQuestionRepository: Repository<sessionQuestion>,
-  ) { }
+  ) {}
   async create(createExamAttemptDto: CreateExamAttemptDto) {
     const isAlreadyAttempted = await this.examAttemptRepo
       .createQueryBuilder('examAttempt')
       .leftJoin('examAttempt.student', 'student')
       .leftJoin('examAttempt.exam', 'exam')
       .addSelect(['student.id', 'student.roll_number', 'exam.id', 'exam.title'])
-      .where('student.id=:studentId AND examAttempt.isCompleted=:checked AND exam.id=:examId', {
-        studentId: createExamAttemptDto.student.id,
-        checked: true,
-        examId: createExamAttemptDto.exam.id
-      })
+      .where(
+        'student.id=:studentId AND examAttempt.isCompleted=:checked AND exam.id=:examId',
+        {
+          studentId: createExamAttemptDto.student.id,
+          checked: true,
+          examId: createExamAttemptDto.exam.id,
+        },
+      )
       .getOne();
     if (isAlreadyAttempted) {
       throw new BadRequestException({
@@ -57,12 +60,13 @@ export class ExamAttemptsService {
     const currentTime = new Date();
     const { endTime } = answerDto.examAttempts;
     if (endTime < currentTime) {
-      answerDto.examAttempts.isCompleted = true
+      answerDto.examAttempts.isCompleted = true;
 
-      return {message:"quiz time up",data:await this.examAttemptRepo.save(answerDto.examAttempts)}
+      return {
+        message: 'quiz time up',
+        data: await this.examAttemptRepo.save(answerDto.examAttempts),
+      };
     }
-
-    
 
     const isAttempted = await this.sessionQuestionRepository
       .createQueryBuilder('sessionQ')

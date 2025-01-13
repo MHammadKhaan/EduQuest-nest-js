@@ -33,7 +33,9 @@ export class examAttempt implements EntitySubscriberInterface<sessionQuestion> {
     examAttempt.score = sessionQuestionEntity.isCorrected
       ? Number(examAttempt.score) + 1
       : examAttempt.score;
-    if (totalQuestions === attemptedQuestionsCount){ examAttempt.isCompleted = true}
+    if (totalQuestions === attemptedQuestionsCount) {
+      examAttempt.isCompleted = true;
+    }
     await examAttemptRepo.save(examAttempt);
   }
 }

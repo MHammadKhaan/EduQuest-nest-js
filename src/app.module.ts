@@ -39,7 +39,7 @@ import { MailModule } from './models/mail/mail.module';
     ExamsModule,
     QuestionsModule,
     ExamAttemptsModule,
-    MailModule
+    MailModule,
   ],
   controllers: [AppController],
   providers: [AppService],

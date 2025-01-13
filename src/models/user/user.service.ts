@@ -34,7 +34,7 @@ export class UserService {
       .addSelect('user.password')
       .where('user.email=:email', { email })
       .getOne();
-      
+
     if (!user)
       throw new NotFoundException(
         `user not fount with provided email: ${JSON.stringify(email)}`,

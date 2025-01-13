@@ -1,22 +1,21 @@
 import { Injectable } from '@nestjs/common';
-import { CreateMailDto } from './dto/create-mail.dto';
 import { UpdateMailDto } from './dto/update-mail.dto';
 import { MailerService } from '@nestjs-modules/mailer';
 import { User } from '../user/entities';
+import { CreateMailDto } from './dto/create-mail.dto';
 @Injectable()
 export class MailService {
-  constructor( private mailerService:MailerService ) {}
+  constructor(private mailerService: MailerService) {}
 
-  async sendMail({user}:CreateMailDto){
-   return  await this.mailerService.sendMail({
-      to:user.email,
-      subject:"welcome to our app !!",
-      template:"confirmation",
-      context:{
-        name:user.name,       
-      }
-    })
-    
+  async sendMail({ user }: CreateMailDto) {
+    return await this.mailerService.sendMail({
+      to: user.email,
+      subject: 'welcome to our app !!',
+      template: 'confirmation',
+      context: {
+        name: user.name,
+      },
+    });
   }
   create(createMailDto: CreateMailDto) {
     return 'This action adds a new mail';
