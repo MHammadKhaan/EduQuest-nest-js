@@ -12,10 +12,11 @@ import {
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { jwtAuthGuard } from 'src/auth/guard/jwt-auth-guard/jwt.guard';
+import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
@@ -24,7 +25,10 @@ export class UserController {
 
   @UseGuards(jwtAuthGuard)
   @Get()
-  async findAll(@Body('email') email: string) {
+  @ApiOperation({ summary: "find user by email" })
+  @ApiOkResponse({ description: 'user fetched with provided email' })
+  @ApiNotFoundResponse({ description: "user not found" })
+  async findByEmail(@Body('email') email: string) {
     return await this.userService.findByEmail(email);
   }
 

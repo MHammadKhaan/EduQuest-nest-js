@@ -34,6 +34,10 @@ export class TeacherController {
     @Body() createTeacherDto: CreateTeacherDto,
     @Body() CreateUserDto: CreateUserDto,
   ) {
+    console.log("teacher",createTeacherDto);
+    console.log("user",CreateUserDto);
+    
+    
     const newUser = await this.UserService.create(CreateUserDto);
     if (!newUser) throw new BadRequestException('unable to create user');
 

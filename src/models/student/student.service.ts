@@ -14,7 +14,9 @@ export class StudentService {
   ) {}
   async create(createStudentDto: CreateStudentDto) {
     const student = await this.studentRepository.save(createStudentDto);
-    await this.mailService.sendMail({ user: student.user });
+    // await this.mailService.sendMail({ user: student.user });
+    console.log(student);
+    
     return student;
   }
 

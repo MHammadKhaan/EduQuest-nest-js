@@ -22,7 +22,8 @@ import { currentUser } from 'src/decorator';
 import { User } from '../user/entities';
 import { jwtAuthGuard } from 'src/auth/guard';
 import { QuestionsService } from '../questions/questions.service';
-
+import { ApiTags } from '@nestjs/swagger';
+// @ApiTags('exam-attempts')
 @Controller('exam-attempts')
 export class ExamAttemptsController {
   constructor(

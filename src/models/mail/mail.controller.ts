@@ -25,11 +25,8 @@ export class MailController {
   async sendMail(@Body('to') to: string) {
     // const {password,...user}=await this.userService.findByEmail(createMailDto.to)
     const { password, ...user } = await this.userService.findByEmail(to);
-
-    //used self-invoke method
     return await this.mailService.sendMail({ ...CreateMailDto, user });
   }
-
   @Get()
   findAll() {
     return this.mailService.findAll();
