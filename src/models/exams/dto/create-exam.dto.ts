@@ -1,24 +1,29 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsString,
   IsNotEmpty,
   IsNumber,
-  IsDateString,
   Min,
-  ValidateNested,
   IsOptional,
 } from 'class-validator';
 import { Teacher } from 'src/models/teacher/entities';
-import { Timestamp } from 'typeorm';
 
 export class CreateExamDto {
+  @ApiProperty({
+    description:'title of the exam'
+  })
   @IsString()
   @IsNotEmpty()
   title: string;
 
+  @ApiProperty({
+    description:'duration time of the exam'
+  })
   @IsNumber()
   @Min(1)
   durationMinutes: number;
-
+  
+  
   @IsOptional()
   teacher: Teacher;
 

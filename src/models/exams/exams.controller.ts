@@ -17,6 +17,7 @@ import { currentUser, Roles } from 'src/decorator';
 import { userRole } from '../user/enum';
 import { User } from '../user/entities';
 import { Teacher } from '../teacher/entities';
+import { ApiBadRequestResponse, ApiCreatedResponse, ApiOperation } from '@nestjs/swagger';
 
 @Controller('exams')
 export class ExamsController {
@@ -28,6 +29,9 @@ export class ExamsController {
   @Roles(userRole.Teacher)
   @UseGuards(jwtAuthGuard, RolesGuard)
   @Post()
+  @ApiOperation({summary:'create exam'})
+  @ApiCreatedResponse({description:'exam created ',type:CreateExamDto})
+  @ApiBadRequestResponse({description:'exam not created'})
   async create(
     @Body() createExamDto: CreateExamDto,
     @currentUser() user: User,

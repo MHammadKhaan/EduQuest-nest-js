@@ -38,13 +38,13 @@ export class TeacherController {
     console.log("user",CreateUserDto);
     
     
-    const newUser = await this.UserService.create(CreateUserDto);
-    if (!newUser) throw new BadRequestException('unable to create user');
+    // const newUser = await this.UserService.create(CreateUserDto);
+    // if (!newUser) throw new BadRequestException('unable to create user');
 
-    return await this.teacherService.create({
-      ...createTeacherDto,
-      user: newUser as User,
-    });
+    // return await this.teacherService.create({
+    //   ...createTeacherDto,
+    //   user: newUser as User,
+    // });
   }
 
   @Get()
