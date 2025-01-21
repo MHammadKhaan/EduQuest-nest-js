@@ -51,7 +51,7 @@ export class StudentController {
         createStudentDto.user = user as User
         const student = await this.studentService.create(createStudentDto, manager)
 
-        return { user, student }
+        return student
       } catch (error) {
         throw new ConflictException(`failed to create user and student ${error.message}`)
       }

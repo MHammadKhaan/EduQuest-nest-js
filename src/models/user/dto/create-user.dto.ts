@@ -39,8 +39,10 @@ export class CreateUserDto {
     example: 'student / teacher',
     enum: userRole
   })
+
+  @IsOptional()
   @IsEnum(userRole, {
     message: `Role must be one of the following:${Object.values(userRole).join(', ')}`,
   })
-  role: userRole;
+  role?: userRole;
 }
