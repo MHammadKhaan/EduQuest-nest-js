@@ -10,15 +10,15 @@ async function bootstrap() {
       whitelist: true,
     }),
   );
-  const config=new DocumentBuilder()
-  .setTitle("QuizApp")
-  .setDescription("Quiz app api documentation")
-  .setVersion('1.0.0')
-  .build()
+  const config = new DocumentBuilder()
+    .setTitle("QuizApp")
+    .setDescription("Quiz app api documentation")
+    .setVersion('1.0.0')
+    .build()
 
-  const document=SwaggerModule.createDocument(app,config)
-  SwaggerModule.setup('api',app,document)
+  const document = SwaggerModule.createDocument(app, config)
+  SwaggerModule.setup('api', app, document)
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT,'0.0.0.0');
 }
 bootstrap();
