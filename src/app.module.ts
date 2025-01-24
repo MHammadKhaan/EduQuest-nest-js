@@ -22,11 +22,12 @@ import { MailModule } from './models/mail/mail.module';
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         type: 'postgres',
-        host: process.env.DB_HOST,
-        port: +process.env.DB_PORT,
-        username: process.env.DB_USERNAME,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_Name,
+        // host: process.env.DB_HOST,
+        // port: +process.env.DB_PORT,
+        // username: process.env.DB_USERNAME,
+        // password: process.env.DB_PASSWORD,
+        // database: process.env.DB_Name,
+        url: process.env.DB_URL,
         subscribers: [examAttempt],
         entities: ['dist/**/*.entity{.ts,.js}'],
         synchronize: true,
@@ -44,4 +45,4 @@ import { MailModule } from './models/mail/mail.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
