@@ -2,15 +2,10 @@ import {
   Controller,
   Get,
   Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
   Request,
   UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { loginDto } from './dto';
 import { localAuthGuard } from './guard';
 import { jwtAuthGuard } from './guard/jwt-auth-guard/jwt.guard';
 

@@ -11,13 +11,13 @@ async function bootstrap() {
     }),
   );
   const config = new DocumentBuilder()
-    .setTitle("QuizApp")
-    .setDescription("Quiz app api documentation")
+    .setTitle('QuizApp')
+    .setDescription('Quiz app api documentation')
     .setVersion('1.0.0')
-    .build()
+    .build();
 
-  const document = SwaggerModule.createDocument(app, config)
-  SwaggerModule.setup('api', app, document)
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
 
   await app.listen(process.env.PORT || 3000);
 }

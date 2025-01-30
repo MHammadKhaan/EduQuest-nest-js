@@ -30,17 +30,14 @@ export class TeacherController {
   constructor(
     private readonly teacherService: TeacherService,
     private readonly UserService: UserService,
-    private readonly transactionProvider: TransactionProvider
-  ) { }
+    private readonly transactionProvider: TransactionProvider,
+  ) {}
 
   @Post('')
   async create(
     @Body() createTeacherDto: CreateTeacherDto,
     @Body() createUserDto: CreateUserDto,
   ) {
-
-
-
     // const newUser = await this.UserService.create(CreateUserDto);
     // if (!newUser) throw new BadRequestException('unable to create user');
 
@@ -49,20 +46,27 @@ export class TeacherController {
     //   user: newUser as User,
     // });
 
-    return this.transactionProvider.executeTransaction(async (manager: EntityManager) => {
-      try {
+    return this.transactionProvider.executeTransaction(
+      async (manager: EntityManager) => {
+        try {
+          const user = await this.UserService.create(
+            { ...createUserDto, role: userRole.Teacher },
+            manager,
+          );
 
-        const user = await this.UserService.create({ ...createUserDto, role: userRole.Teacher }, manager)
+          const teacher = await this.teacherService.create(
+            { ...createTeacherDto, user: user as User },
+            manager,
+          );
 
-        const teacher = await this.teacherService.create({ ...createTeacherDto, user: user as User }, manager)
-
-        return teacher
-
-      } catch (error) {
-        throw new ConflictException(`user teacher not created ${error.message}`)
-      }
-    })
-
+          return teacher;
+        } catch (error) {
+          throw new ConflictException(
+            `user teacher not created ${error.message}`,
+          );
+        }
+      },
+    );
   }
 
   @Get()

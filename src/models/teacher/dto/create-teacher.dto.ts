@@ -11,6 +11,4 @@ export class CreateTeacherDto {
   // @IsNotEmpty()
   @IsOptional()
   user?: User;
-
-  
 }

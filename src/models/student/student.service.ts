@@ -15,7 +15,7 @@ export class StudentService {
     @InjectRepository(Student)
     // private readonly studentRepository: Repository<Student>,
     private readonly mailService: MailService,
-  ) { }
+  ) {}
   async create(createStudentDto: CreateStudentDto, manager: EntityManager) {
     // const student = await this.studentRepository.save(createStudentDto);
     // await this.mailService.sendMail({ user: student.user });
@@ -23,8 +23,8 @@ export class StudentService {
 
     // return student;
 
-    const student = manager.create(Student, createStudentDto)
-    return await manager.save(Student, student)
+    const student = manager.create(Student, createStudentDto);
+    return await manager.save(Student, student);
   }
 
   findAll() {

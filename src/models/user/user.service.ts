@@ -12,7 +12,7 @@ import { EntityManager, Repository } from 'typeorm';
 export class UserService {
   constructor(
     @InjectRepository(User) private readonly userRepository: Repository<User>,
-  ) { }
+  ) {}
   async create(createUserDto: CreateUserDto, manager: EntityManager) {
     const user = await this.userRepository.findOne({
       where: { email: createUserDto.email },
@@ -21,9 +21,8 @@ export class UserService {
       throw new BadRequestException(
         `user already exist with this email ${createUserDto.email}`,
       );
-    const createUser = manager.create(User, createUserDto);//
-    const { password, ...registerUser } =
-      await manager.save(User, createUser);//
+    const createUser = manager.create(User, createUserDto); //
+    const { password, ...registerUser } = await manager.save(User, createUser); //
     return registerUser;
   }
 
@@ -59,5 +58,9 @@ export class UserService {
 
   remove(id: number) {
     return `This action removes a #${id} user`;
+  }
+
+  check() {
+    return 'test commit';
   }
 }

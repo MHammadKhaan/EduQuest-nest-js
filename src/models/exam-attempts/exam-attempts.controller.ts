@@ -10,19 +10,14 @@ import {
   Delete,
   ParseIntPipe,
   UseGuards,
-  BadRequestException,
 } from '@nestjs/common';
 import { ExamAttemptsService } from './exam-attempts.service';
-import { CreateExamAttemptDto } from './dto/create-exam-attempt.dto';
 import { UpdateExamAttemptDto } from './dto/update-exam-attempt.dto';
 import { Student } from '../student/entities';
-import { Question } from '../questions/entities';
-import { ExamAttempt } from './entities';
 import { currentUser } from 'src/decorator';
 import { User } from '../user/entities';
 import { jwtAuthGuard } from 'src/auth/guard';
 import { QuestionsService } from '../questions/questions.service';
-import { ApiTags } from '@nestjs/swagger';
 // @ApiTags('exam-attempts')
 @Controller('exam-attempts')
 export class ExamAttemptsController {

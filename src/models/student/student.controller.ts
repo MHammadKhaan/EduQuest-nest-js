@@ -16,7 +16,11 @@ import { StudentService } from './student.service';
 import { User } from '../user/entities';
 import { CreateStudentDto } from './dto';
 import { CreateUserDto } from '../user/dto';
-import { ApiBadRequestResponse, ApiCreatedResponse, ApiOperation } from '@nestjs/swagger';
+import {
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+  ApiOperation,
+} from '@nestjs/swagger';
 import { Student } from './entities';
 import { EntityManager } from 'typeorm';
 
@@ -25,12 +29,15 @@ export class StudentController {
   constructor(
     private readonly studentService: StudentService,
     private readonly UserService: UserService,
-    private readonly transactionProvider: TransactionProvider
-  ) { }
+    private readonly transactionProvider: TransactionProvider,
+  ) {}
 
   @Post('')
   @ApiOperation({ summary: 'create student' })
-  @ApiCreatedResponse({ description: 'student created successfully', type: CreateStudentDto })
+  @ApiCreatedResponse({
+    description: 'student created successfully',
+    type: CreateStudentDto,
+  })
   @ApiBadRequestResponse({ description: 'student not created' })
   async create(
     @Body() createUserDto: CreateUserDto,
@@ -45,19 +52,24 @@ export class StudentController {
     // });
 
     // return await this.studentService.create(createStudentDto, createUserDto)
-    return this.transactionProvider.executeTransaction(async (manager: EntityManager) => {
-      try {
-        const user = await this.UserService.create(createUserDto, manager)
-        createStudentDto.user = user as User
-        const student = await this.studentService.create(createStudentDto, manager)
+    return this.transactionProvider.executeTransaction(
+      async (manager: EntityManager) => {
+        try {
+          const user = await this.UserService.create(createUserDto, manager);
+          createStudentDto.user = user as User;
+          const student = await this.studentService.create(
+            createStudentDto,
+            manager,
+          );
 
-        return student
-      } catch (error) {
-        throw new ConflictException(`failed to create user and student ${error.message}`)
-      }
-    })
-
-
+          return student;
+        } catch (error) {
+          throw new ConflictException(
+            `failed to create user and student ${error.message}`,
+          );
+        }
+      },
+    );
   }
 
   @Get()

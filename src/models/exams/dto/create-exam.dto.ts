@@ -10,20 +10,19 @@ import { Teacher } from 'src/models/teacher/entities';
 
 export class CreateExamDto {
   @ApiProperty({
-    description:'title of the exam'
+    description: 'title of the exam',
   })
   @IsString()
   @IsNotEmpty()
   title: string;
 
   @ApiProperty({
-    description:'duration time of the exam'
+    description: 'duration time of the exam',
   })
   @IsNumber()
   @Min(1)
   durationMinutes: number;
-  
-  
+
   @IsOptional()
   teacher: Teacher;
 

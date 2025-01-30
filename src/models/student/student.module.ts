@@ -11,4 +11,4 @@ import { TransactionProvider } from 'src/util';
   controllers: [StudentController],
   providers: [StudentService, TransactionProvider],
 })
-export class StudentModule { }
+export class StudentModule {}

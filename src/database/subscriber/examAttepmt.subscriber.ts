@@ -2,7 +2,6 @@ import {
   ExamAttempt,
   sessionQuestion,
 } from 'src/models/exam-attempts/entities';
-import { Question } from 'src/models/questions/entities';
 import {
   EntitySubscriberInterface,
   EventSubscriber,

@@ -9,6 +9,6 @@ import { TransactionProvider } from 'src/util';
 @Module({
   imports: [TypeOrmModule.forFeature([Teacher]), UserModule],
   controllers: [TeacherController],
-  providers: [TeacherService,TransactionProvider],
+  providers: [TeacherService, TransactionProvider],
 })
 export class TeacherModule {}

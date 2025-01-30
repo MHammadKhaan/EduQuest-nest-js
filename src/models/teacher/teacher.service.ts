@@ -9,7 +9,7 @@ export class TeacherService {
   constructor(
     @InjectRepository(Teacher)
     private readonly teacherRepository: Repository<Teacher>,
-  ) { }
+  ) {}
   async create(createTeacherDto: CreateTeacherDto, manager: EntityManager) {
     return await manager.save(Teacher, createTeacherDto);
   }

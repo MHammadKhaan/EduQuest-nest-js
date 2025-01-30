@@ -1,15 +1,12 @@
 import { BaseEntity } from 'src/database';
 import { Question } from 'src/models/questions/entities';
 import {
-  BeforeInsert,
   Column,
   Entity,
   JoinColumn,
   ManyToOne,
-  Repository,
 } from 'typeorm';
 import { ExamAttempt } from './exam-attempt.entity';
-import { InjectRepository } from '@nestjs/typeorm';
 
 @Entity({ name: 'session_question' })
 export class sessionQuestion extends BaseEntity {
