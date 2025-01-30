@@ -1,11 +1,6 @@
 import { BaseEntity } from 'src/database';
 import { Question } from 'src/models/questions/entities';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-} from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { ExamAttempt } from './exam-attempt.entity';
 
 @Entity({ name: 'session_question' })
